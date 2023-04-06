@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color:  #eef9bf;
+}
+
+.titulo {
+    margin-top: 40px;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 66px;
+    color: #75B79E;
+    text-align: center;
+}
+
+.conteudo {
+    width: 1023px;
+    height: auto;
+    margin: auto;
+    margin-top: 47px;
+    gap: 34px; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 335px){
+    .titulo {
+        font-size: 36px;
+        line-height: 42px; 
+    }
+
+    .conteudo {
+        width: 117px;
+    }
+}
