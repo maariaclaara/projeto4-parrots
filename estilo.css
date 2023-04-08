@@ -8,7 +8,7 @@ body {
     background-color:  #eef9bf;
 }
 
-.titulo {
+.title {
     margin-top: 40px;
     font-weight: 700;
     font-size: 56px;
@@ -17,8 +17,8 @@ body {
     text-align: center;
 }
 
-.conteudo {
-    width: 1023px;
+.content {
+    width: 872px;
     height: auto;
     margin: auto;
     margin-top: 47px;
@@ -29,13 +29,43 @@ body {
     align-items: center;
 }
 
+.card {
+    width: 117px;
+    height: 146px;
+    position: relative;
+  }
+
+.img {
+    width: 100px;
+    height: 100px;
+  }
+
+.face {
+    width: 100%;
+    height: 100%;
+    background-color: #75B79E;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
+  }
+
+  .back-face {
+    transform: rotateY(180deg);
+  }
+
 @media (max-width: 335px){
-    .titulo {
+    .title {
         font-size: 36px;
         line-height: 42px; 
     }
 
-    .conteudo {
+    .content {
         width: 117px;
     }
 }
