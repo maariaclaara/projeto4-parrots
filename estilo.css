@@ -17,6 +17,20 @@ body {
     text-align: center;
 }
 
+.clock {
+    font-family: 'Roboto', sans-serif;
+    font-size: 56px;
+    width: 70px;
+    height: 60px;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:  #75B79E;
+}
+
 .content {
     width: 872px;
     height: auto;
@@ -27,12 +41,14 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin-bottom: 40px;
 }
 
 .card {
     width: 117px;
     height: 146px;
     position: relative;
+    cursor: pointer;
   }
 
 .img {
@@ -45,19 +61,28 @@ body {
     height: 100%;
     background-color: #75B79E;
     border-radius: 10px;
-    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.9);
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     backface-visibility: hidden;
-    transition: all .5s;
+    transition: all .1s;
     transform-style: preserve-3d;
   }
 
   .back-face {
     transform: rotateY(180deg);
   }
+
+  .turnFront {
+    transform: rotateY(-180deg);
+  }
+
+  .turnBack {
+    transform: rotateY(0deg);
+  }
+
 
 @media (max-width: 335px){
     .title {
@@ -68,4 +93,16 @@ body {
     .content {
         width: 117px;
     }
+
+    .clock {
+      font-size: 40px;
+      width: 50px;
+      height: 40px;
+      top: 3px;
+      right: -10px;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
 }

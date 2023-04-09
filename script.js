@@ -1,108 +1,112 @@
-/*inicio do jogo*/
+const imgCards = [
+    "./imagem/carta1.gif" ,
+    "./imagem/carta2.gif" ,
+    "./imagem/carta3.gif" ,
+    "./imagem/carta4.gif" ,
+    "./imagem/carta5.gif" ,
+    "./imagem/carta6.gif" ,
+    "./imagem/carta7.gif" ,
+    ];
+    
+const cards = [];
 
-let numberCards = Number ( prompt('Quantas cartas você quer? (Número par entre 4 e 14)') );
+let cardPairs = [];
 
-while (( numberCards < 4 || numberCards > 14 || (numberCards % 2) !== 0)){
-    numberCards = Number ( prompt('Quantas cartas você quer? (Número par entre 4 e 14)') );
-}
+let selectCard = null;
+
+let Letters = null;
+
+let Pairs = null;
+
+const Status = false;
+
+let rounds = 0;
 
 
 /*distribuir cartas*/
 
-const imgCards = [
-"./imagem/carta1.gif" ,
-"./imagem/carta1.gif" ,
-"./imagem/carta2.gif" ,
-"./imagem/carta2.gif" ,
-"./imagem/carta3.gif" ,
-"./imagem/carta3.gif" ,
-"./imagem/carta4.gif" ,
-"./imagem/carta4.gif" ,
-"./imagem/carta5.gif" ,
-"./imagem/carta5.gif" ,
-"./imagem/carta6.gif" ,
-"./imagem/carta6.gif" ,
-"./imagem/carta7.gif" ,
-"./imagem/carta7.gif" ,
-];
-
-const cards = [];
-
-function comparador() { 
-	return Math.random() - 0.5; 
-}
-
 function addCards(){
 
-    for(let i = 0; i < numberCards; i++){
-        cards[i] = imgCards[i];
+    let numberCards = Number ( prompt('Quantas cartas você quer? (Número par entre 4 e 14)') );
+
+    while (( numberCards < 4 || numberCards > 14 || (numberCards % 2) !== 0)){
+    numberCards = Number ( prompt('Quantas cartas você quer? (Número par entre 4 e 14)') );
     }
 
+    imgCards.sort(comparador);
+
+    for(let i = 0; i < (numberCards / 2); i++){
+        cards.push(imgCards[i], imgCards[i]);
+    }
+
+    Pairs = numberCards / 2;
     cards.sort(comparador);
 
     for(let i = 0; i < numberCards; i++){
         const containerCards = document.querySelector(".content");
 
         containerCards.innerHTML = containerCards.innerHTML + `
-            <div data-test="card" onclick="checkCard(this)" class="card">
+            <div data-test="card" onclick="flipCards(this)" class="card">
                 <div class="front-face face">
                     <img data-test="face-down-image" src="./imagem/back.png" class="img" />
                 </div> 
                 <div class="back-face face">
-                    <img data-test="face-up-image" src="${cards[i]}" class="img" />
+                    <img data-test="face-up-image" src="${cards[i]}"  class="img" />
                 </div> 
             </div> ` ;
-    }    
-}
-
-addCards();
+    } ; 
+};
 
 
-/*igualdade e diferença do par de cartas*/
+function comparador() { 
+	return Math.random() - 0.5; 
+};
 
-let moves = 0;
-let pair = 0;
-let faceCards = 0;
-let imgCard = "";
-
-function checkPair (image, card ) {
-
-    if (image.querySelector('img').src === card.querySelector('back-face>img').src){
-        
-        pair++;
-        faceCards = 0;
-        imgCard = "";
-
-    } else if (image.querySelector('image').src !== card.querySelector('back-face>img').src){
-    
-        imgCard = "";
-        image.parentElement.classList.remove('turn');
-        card.parentElement.classList.remove('turn');
-        faceCards = 0;
-    
-    } if (pair === (numberCards / 2)){
-        prompt ('Você ganhou em $(moves) jogadas!')
-    }
-}
 
 
 /*virar carta*/
 
-function checkCard(click){
 
-    if ((click.classList.contains('turn') === false) && faceCards === 0){
-        click.classList.add('turn');
-        imgCard = click.querySelector('.back-face');
-        moves++;
-        faceCards++;
+function flipCards(showThis) {
+
+    const Back = showThis.querySelector('.back-face');
+
+
+    if (Back.classList.contains('turnBack') === false){
+        hideCard(showThis);
+        rounds++ ;
+    
+        if(Status === false){
+            Letters = showThis;
+            Status = true;
+
+        } else if (Letters.innerHTML !== showThis.innerHTML){
+            Status = false;
+            setTimeout(hideCard, 600, Letters);
+            setTimeout(hideCard, 600, showThis);
+            Letters = null;
         
-    } else if ((click.classList.contains('turn') === false) && faceCards === 1){
-        click.classList.add('turn');
-        moves++;
-        faceCards++;
-        setTimeout(checkPair, 1000, imgCard, click);
-    } 
-}
+        } else {
+            Status = false; 
+            cardPairs.push(showThis.classList[1]);
+        } 
+    };
+};
+
+function hideCard(card) {
+    
+    const frontCard = card.querySelector('.front-face');
+    frontCard.classList.toggle('turnFront');
+
+    const backCard = card.querySelector('.back-face');
+    backCard.classList.toggle('turnBack')
+};
+   
+
+/*play no jogo*/
+
+addCards();
+
 
 
 
