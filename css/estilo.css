@@ -17,20 +17,6 @@ body {
     text-align: center;
 }
 
-.clock {
-    font-family: 'Roboto', sans-serif;
-    font-size: 56px;
-    width: 70px;
-    height: 60px;
-    top: 10px;
-    right: 10px;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color:  #75B79E;
-}
-
 .content {
     width: 872px;
     height: auto;
@@ -48,7 +34,6 @@ body {
     width: 117px;
     height: 146px;
     position: relative;
-    cursor: pointer;
   }
 
 .img {
@@ -93,16 +78,4 @@ body {
     .content {
         width: 117px;
     }
-
-    .clock {
-      font-size: 40px;
-      width: 50px;
-      height: 40px;
-      top: 3px;
-      right: -10px;
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  }
 }

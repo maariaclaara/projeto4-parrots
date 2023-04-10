@@ -7,7 +7,7 @@ const imgCards = [
     "./imagem/carta6.gif" ,
     "./imagem/carta7.gif" ,
     ];
-    
+
 const cards = [];
 
 let cardPairs = [];
@@ -18,7 +18,7 @@ let Letters = null;
 
 let Pairs = null;
 
-const Status = false;
+let Status = false;
 
 let rounds = 0;
 
@@ -75,7 +75,7 @@ function flipCards(showThis) {
     if (Back.classList.contains('turnBack') === false){
         hideCard(showThis);
         rounds++ ;
-    
+
         if(Status === false){
             Letters = showThis;
             Status = true;
@@ -85,7 +85,7 @@ function flipCards(showThis) {
             setTimeout(hideCard, 600, Letters);
             setTimeout(hideCard, 600, showThis);
             Letters = null;
-        
+
         } else {
             Status = false; 
             cardPairs.push(showThis.classList[1]);
@@ -94,21 +94,26 @@ function flipCards(showThis) {
 };
 
 function hideCard(card) {
-    
+
     const frontCard = card.querySelector('.front-face');
     frontCard.classList.toggle('turnFront');
 
     const backCard = card.querySelector('.back-face');
     backCard.classList.toggle('turnBack')
 };
-   
+
+
+/*mensagem final*/
+
+function Finish() {
+
+    alert(`Você ganhou em ${rounds} jogadas!`);
+};
+
 
 /*play no jogo*/
 
 addCards();
-
-
-
 
 
 
