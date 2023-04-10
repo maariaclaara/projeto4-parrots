@@ -89,7 +89,11 @@ function flipCards(showThis) {
         } else {
             Status = false; 
             cardPairs.push(showThis.classList[1]);
-        } 
+
+        } if (cardPairs.length === Pairs){
+
+            setTimeout(Finish, 600);
+        }
     };
 };
 
